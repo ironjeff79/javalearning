@@ -36,7 +36,9 @@ B类的无参数构造方法
 5 注意：
       this()和super()不能共存，它们都是只能出现在构造方法第一行。
       
-  
+super.属性名        【访问父类的属性】
+super.方法名(实参)  【访问父类的方法】
+super(实参)         【调用父类的构造方法】
 */
 public class Chapter1303super {
 	public static void main(String[] args) {
