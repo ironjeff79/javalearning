@@ -1,0 +1,33 @@
+// 思路：使用BFS
+// 使用BFS，将每一层的数字加起来，然后求平均值
+// 总结：时间复杂度O（N）  空间复杂度O（N）
+class Solution {
+    public List<Double> averageOfLevels(TreeNode root) {
+        //用于BFS的队列
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        //用于保存结果的数组
+        List<Double> result = new ArrayList<>();
+
+        double tempSum;//临时变量，记录每层节点相加的总和
+        int tempCount;//临时变量，记录每层节点的个数
+        TreeNode tempNode;//临时变量，方便BFS操作
+        while (!queue.isEmpty()){
+            //循环遍历每一层
+            tempSum = 0.0;
+            tempCount = queue.size();
+            for (int i = 0; i < tempCount; i++) {
+                tempNode = queue.poll();
+                if (tempNode.left != null) queue.offer(tempNode.left);
+                if (tempNode.right != null) queue.offer(tempNode.right);
+
+                tempSum += tempNode.val;//将每一层的节点值相加
+            }
+            result.add(tempSum / tempCount);//计算平均值，并加入结果集合中
+        }
+
+        //返回结果集合
+        return result;
+    }
+}
